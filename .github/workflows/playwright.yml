@@ -1,8 +1,6 @@
-name: Playwright Tests
-
-
+name: Playwright-ui-automation
 on:
-  workflow_call: 
+   workflow_call: 
     inputs:
       Env:
         required: true
@@ -10,38 +8,39 @@ on:
       Test:
         required: true
         type: string
-jobs:
-automation: 
-      name: Playwright-ui-automation
-      run-on: ubuntu-latest
-      env:
-      GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-      ENV: ${{ inputs.ENV }}
 
-steps:
-- uses: action/checkout@v3
-  id: node
-  with:
+jobs:
+  automation: 
+  name: Playwright-ui-automation
+  run-on: ubuntu-latest
+  env:
+    GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+    ENV: ${{ inputs.ENV }}
+
+  steps:
+  - uses: action/checkout@v3
+    id: node
+    with:
      node-version: 20.9
       
-- name: Install Playwright and Browser
-  working-directory: ./PLAYWRIGHT-TEST
-  run: |
+  - name: Install Playwright and Browser
+    working-directory: ./PLAYWRIGHT-TEST
+    run: |
         npm install
         npx playwright install
 
-- name: Run UI tests
-  working-directory: ./PLAYWRIGHT-TEST
-  run: npm run ${{ inputs.TEST }}
+  - name: Run UI tests
+    working-directory: ./PLAYWRIGHT-TEST
+    run: npm run ${{ inputs.TEST }}
 
-- name: Generate reports
-  if: always()
-  working-directory: ./PLAYWRIGHT-TEST
-  Run: npm run report
+  - name: Generate reports
+    if: always()
+    working-directory: ./PLAYWRIGHT-TEST
+    Run: npm run report
 
-- name: Publishing Results
-  if: always()
-  working-directory: actions/upload-artifacts@v3
-  with:
+  - name: Publishing Results
+    if: always()
+    working-directory: actions/upload-artifacts@v3
+    with:
     name: test-report
     path: ./playwright/reports
