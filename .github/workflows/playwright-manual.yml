@@ -1,0 +1,21 @@
+name: Playwright - Manual
+on:
+  workflow_call: 
+    inputs:
+      Env:
+        required: true
+        type: string
+      Test:
+      required: true
+      type: string
+    secrets:
+    GIT_TOKEN:
+    required: true
+
+jobs:
+  automation:
+    name: Playwright-ui-automation
+    run-on: ubuntu-latest
+    env:
+    GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+    ENV: ${{ inputs.ENV }}

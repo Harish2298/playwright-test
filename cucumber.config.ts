@@ -1,5 +1,5 @@
 import{BeforeAll, Before, After, AfterAll, Status, AfterStep, setDefaultTimeout} from "@cucumber/cucumber";
-import { Page, Browser, chromium } from "playwright/test";
+import { Browser, chromium } from "playwright";
 import config from "./config";
 export var browser : Browser;
 
