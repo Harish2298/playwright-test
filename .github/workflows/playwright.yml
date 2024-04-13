@@ -1,4 +1,6 @@
 name: Playwright Tests
+
+
 on:
   workflow_call: 
     inputs:
@@ -6,19 +8,19 @@ on:
         required: true
         type: string
       Test:
-      required: true
-      type: string
-    secrets:
-    GIT_TOKEN:
-    required: true
+        required: true
+        type: string
+      secrets:
+        GIT_TOKEN:
+        required: true
 
 jobs:
-  automation:
-    name: Playwright-ui-automation
-    run-on: ubuntu-latest
+    automation:
+      name: Playwright-ui-automation
+      run-on: ubuntu-latest
     env:
-    GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-    ENV: ${{ inputs.ENV }}
+      GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      ENV: ${{ inputs.ENV }}
 
     steps:
     - uses: action/checkout@v3
@@ -27,10 +29,10 @@ jobs:
         node-version: 20.9
 
     - name: Install Playwright and Browser
-      working-directory: ./playwright-test
-      run: |
-        npm install
-        npx playwright install
+        working-directory: ./playwright-test
+        run: |
+          npm install
+          npx playwright install
 
     - name: Run UI tests
         working-directory: ./playwright-test
