@@ -1,18 +1,19 @@
 import config from "../config";
 import { Page } from "@playwright/test"
 
-export class loginPage{
+export class LoginPage{
     username: string;
     page: Page;
     password: string;
 
     constructor (page:Page){
-        this.page = page
-        
+        this.page = page   
     }
-
+    
    async launchBrowser (){
-    await this.page.goto(config.baseUrl);
+    let myObject;
+    console.log(myObject.goto);
+    await this.page.goto("https://www.amazon.in/");
    }
     
    }

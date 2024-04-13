@@ -1,2 +1,0 @@
-# playwright-test
-Playwright Framework
