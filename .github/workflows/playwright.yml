@@ -29,7 +29,7 @@ jobs:
         node-version: 20.9
 
     - name: Install Playwright and Browser
-        working-directory: ./playwright-test
+        working-directory: ./playwright-ui-automation
         run: |
           npm install
           npx playwright install
