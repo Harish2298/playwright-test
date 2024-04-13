@@ -10,42 +10,38 @@ on:
       Test:
         required: true
         type: string
-      secrets:
-        GIT_TOKEN:
-        required: true
-
 jobs:
-    automation:
+automation: 
       name: Playwright-ui-automation
       run-on: ubuntu-latest
-    env:
+      env:
       GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
       ENV: ${{ inputs.ENV }}
 
-    steps:
-    - uses: action/checkout@v3
-      id: node
-      with:
-        node-version: 20.9
+steps:
+- uses: action/checkout@v3
+  id: node
+  with:
+     node-version: 20.9
+      
+- name: Install Playwright and Browser
+  working-directory: ./PLAYWRIGHT-TEST
+  run: |
+        npm install
+        npx playwright install
 
-    - name: Install Playwright and Browser
-        working-directory: ./playwright-ui-automation
-        run: |
-          npm install
-          npx playwright install
+- name: Run UI tests
+  working-directory: ./PLAYWRIGHT-TEST
+  run: npm run ${{ inputs.TEST }}
 
-    - name: Run UI tests
-        working-directory: ./playwright-test
-        run: npm run ${{ inputs.TEST }}
+- name: Generate reports
+  if: always()
+  working-directory: ./PLAYWRIGHT-TEST
+  Run: npm run report
 
-    - name: Generate reports
-        if: always()
-        working-directory: ./playwright-test
-        run: npm run report
-
-  - name: Publishing Results
-      if: always()
-      working-directory: actions/upload-artifacts@v3
-      with:
-       name: test-report
-       path: ./playwright/reports
+- name: Publishing Results
+  if: always()
+  working-directory: actions/upload-artifacts@v3
+  with:
+    name: test-report
+    path: ./playwright/reports
