@@ -1,0 +1,28 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "Given: I am in the Amazon HomePage",
+        "id": "\"amazon-login\";\"homepage\"\"",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "\"HomePage\"\"",
+        "steps": [],
+        "tags": [
+          {
+            "name": "@all",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "\"amazon-login\"",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "\"Amazon Login\"",
+    "tags": [],
+    "uri": "feature/amazon.feature"
+  }
+]

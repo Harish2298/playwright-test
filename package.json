@@ -1,0 +1,28 @@
+{
+  "name": "playwright",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Playwright automation",
+  "main": "index.js",
+  "license": "ISC",
+  "author": "Harish",
+  "scripts": {
+    "list-document-test": "cucumber-js -p test_runner --tags @list-document",
+    "regression-test": "cucumber-js -p test_runner --tags @regression",
+    "all-test": "cucumber-js -p test_runner --tags @all",
+    "ui-test": "cucumber-js -p test_runner --tags @test",
+    "report": "node ./htmlReportGenerator.js"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "10.3.1",
+    "@cucumber/pretty-formatter": "^1.0.1",
+    "@playwright/test": "^1.41.2",
+    "@types/node": "17.0.45",
+    "expect-playwright": "0.8.0"
+  },
+  "dependencies": {
+    "cucumber": "^6.0.7",
+    "playwright-test": "^14.1.1",
+    "ts-node": "^10.9.2"
+  }
+}

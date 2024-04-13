@@ -1,0 +1,12 @@
+node_modules/
+/test-results/
+/playwright-report/
+pacakge-lock.json
+.npm
+.vscode
+/blob-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
